@@ -1,0 +1,90 @@
+/* =====================================================================
+   admin.css · login page + editor
+   Uses the tokens from base.css.
+   ===================================================================== */
+
+/* Hide protected pages until the login check passes (see auth.js). */
+html[data-auth="pending"] body { visibility: hidden; }
+
+/* ---- Login page ---------------------------------------------------- */
+.auth-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--wash);
+  display: grid;
+  align-items: center;
+  padding: var(--space-4);
+}
+
+.auth-panel {
+  width: 100%;
+  max-width: 26rem;
+  margin-inline: auto;
+  padding: var(--space-8) var(--space-6);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+
+.auth-home {
+  display: inline-block;
+  margin-bottom: var(--space-8);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.auth-panel .meta { margin-top: var(--space-2); }
+
+.auth-form {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.auth-form .btn { justify-content: center; width: 100%; }
+
+.form-error {
+  padding: var(--space-3);
+  border-left: 3px solid var(--danger);
+  background: #fef3f2;
+  color: var(--danger);
+  font-size: var(--text-sm);
+}
+
+/* ---- Editor shell -------------------------------------------------- */
+.admin { background: var(--wash); min-height: 100vh; }
+
+.admin-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.admin-brand {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.admin-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.admin-user .meta {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 30rem) {
+  .admin-user .meta { display: none; }
+}
+
+.admin-main { padding-block: var(--space-8); }
+.admin-main .meta { margin-top: var(--space-2); }

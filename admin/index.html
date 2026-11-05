@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- data-auth="pending" hides the page until requireAuth() confirms you are
+     logged in, so a logged-out visitor never sees the editor flash. -->
+<html lang="en" data-auth="pending" data-page="admin">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Editor · REN_DC.DEV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script type="module">
+    import { requireAuth, signOut } from '../js/auth.js';
+
+    const session = await requireAuth();
+    if (session) {
+      document.getElementById('user-email').textContent = session.user.email;
+      document.getElementById('logout-button').addEventListener('click', signOut);
+    }
+  </script>
+</head>
+<body class="admin">
+  <header class="admin-bar">
+    <a class="admin-brand" href="../">REN_DC.DEV</a>
+    <div class="admin-user">
+      <span id="user-email" class="meta"></span>
+      <button id="logout-button" class="btn btn-quiet" type="button">Log out</button>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <h1>Editor</h1>
+    <p class="meta">You are logged in. Profile and section editing arrive in T05–T08.</p>
+  </main>
+</body>
+</html>
