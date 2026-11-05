@@ -1,0 +1,248 @@
+/* =====================================================================
+   base.css · shared design tokens + base styles
+   Used by every page: public site, editor and resume.
+   Change a colour or font HERE and the whole project follows.
+
+   Fonts are loaded in each HTML <head> (faster than @import):
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap">
+   ===================================================================== */
+
+:root {
+  /* ---- Colour ------------------------------------------------------ */
+  --paper:      #ffffff;  /* page + resume background                  */
+  --wash:       #f3f5f7;  /* editor background, desk behind preview    */
+  --ink:        #18212f;  /* main text                                 */
+  --ink-soft:   #4a5568;  /* dates, companies, secondary text          */
+  --rule:       #d9dee5;  /* thin lines, input borders                 */
+  --highlight:  #f6e05e;  /* ONLY as a background behind ink text      */
+  --danger:     #b42318;  /* delete buttons, error messages            */
+
+  /* ---- Type -------------------------------------------------------- */
+  --font-sans:  "Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+
+  /* Scale: ratio 1.25 (major third), base 1rem = 16px */
+  --text-sm:    0.8125rem; /* 13px  meta, captions     */
+  --text-base:  1rem;      /* 16px  UI text            */
+  --text-body:  1.0625rem; /* 17px  reading text       */
+  --text-md:    1.25rem;   /* 20px  item titles        */
+  --text-lg:    1.5625rem; /* 25px  section headings   */
+  --text-xl:    1.9375rem; /* 31px  page headings      */
+  --text-name:  clamp(2.75rem, 1.5rem + 6vw, 5.5rem); /* your name */
+
+  --leading-tight: 1.1;
+  --leading-ui:    1.4;
+  --leading-body:  1.6;   /* serif reading text gets more air */
+
+  /* ---- Space (4px steps) ------------------------------------------- */
+  --space-1: 0.25rem;  /*  4px */
+  --space-2: 0.5rem;   /*  8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+
+  /* ---- Layout ------------------------------------------------------ */
+  --measure:     68ch;    /* max line length for reading text */
+  --page-max:    72rem;   /* 1152px widest content            */
+  --rail-width:  11rem;   /* left column with section names   */
+  --radius:      4px;     /* buttons + inputs only            */
+  --focus:       2px solid var(--ink);
+}
+
+/* ---- Reset (small and safe) ---------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+h1, h2, h3, h4, p, ul, ol, figure { margin: 0; }
+
+/* ---- Typography ---------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+  text-wrap: balance;
+}
+h1 { font-size: var(--text-xl); letter-spacing: -0.01em; }
+h2 { font-size: var(--text-lg); }
+h3 { font-size: var(--text-md); font-weight: 600; }
+
+.name {
+  font-size: var(--text-name);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.prose {
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+.prose > * + * { margin-top: var(--space-4); }
+
+.meta {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+/* The highlighter: a marker stroke behind ink text. */
+.highlight,
+mark {
+  background: linear-gradient(transparent 12%, var(--highlight) 12%, var(--highlight) 88%, transparent 88%);
+  color: var(--ink);
+  padding: 0 0.15em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ---- Focus: always visible for keyboard users ---------------------- */
+:focus-visible {
+  outline: var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---- Buttons ------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.5rem;              /* 40px: easy to tap on a phone */
+  padding: 0 var(--space-4);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--paper);
+  font: 600 var(--text-base) / 1 var(--font-sans);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { background: #2a3547; }
+
+.btn-quiet {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule);
+}
+.btn-quiet:hover { background: var(--wash); border-color: var(--ink-soft); }
+
+.btn-danger {
+  background: transparent;
+  color: var(--danger);
+  border-color: var(--rule);
+}
+.btn-danger:hover { border-color: var(--danger); background: #fef3f2; }
+
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---- Forms --------------------------------------------------------- */
+.field { display: grid; gap: var(--space-1); }
+
+.field label {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font: var(--text-base) / var(--leading-ui) var(--font-sans);
+}
+.field textarea { min-height: 6rem; resize: vertical; }
+.field input:hover,
+.field textarea:hover,
+.field select:hover { border-color: var(--ink-soft); }
+.field input:focus-visible,
+.field textarea:focus-visible,
+.field select:focus-visible { outline-offset: 0; border-color: var(--ink); }
+
+.field .hint { color: var(--ink-soft); font-size: var(--text-sm); }
+.field .error { color: var(--danger); font-size: var(--text-sm); }
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+.check input { width: 1.125rem; height: 1.125rem; accent-color: var(--ink); }
+
+/* ---- Rail layout: section name left, content right ----------------- */
+/* Used on the public page. Stacks on phones.                           */
+.rail {
+  display: grid;
+  gap: var(--space-4);
+  padding-block: var(--space-8);
+  border-top: 1px solid var(--rule);
+}
+.rail > h2 { font-size: var(--text-md); }
+
+@media (min-width: 48rem) {
+  .rail {
+    grid-template-columns: var(--rail-width) 1fr;
+    gap: var(--space-8);
+  }
+  .rail > h2 {
+    position: sticky;
+    top: var(--space-6);
+    align-self: start;
+  }
+}
+
+/* ---- Helpers ------------------------------------------------------- */
+.container {
+  width: min(100% - 2 * var(--space-4), var(--page-max));
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- Motion: respect the user's setting ---------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
