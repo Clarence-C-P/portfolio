@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Style guide · Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap">
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+    /* Styles only for this reference page */
+    .sg-head { padding-block: var(--space-12) var(--space-8); }
+    .sg-head p { margin-top: var(--space-3); max-width: 60ch; color: var(--ink-soft); }
+
+    .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: var(--space-4); }
+    .swatch { border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+    .swatch div { height: 4.5rem; }
+    .swatch p { padding: var(--space-2) var(--space-3); font-size: var(--text-sm); }
+    .swatch code { color: var(--ink-soft); }
+
+    .scale > * + * { margin-top: var(--space-4); }
+    .scale .meta { display: block; margin-bottom: var(--space-1); }
+
+    .row-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+    .form-demo { display: grid; gap: var(--space-4); max-width: 30rem; }
+
+    /* Editor list preview */
+    .list { border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper); }
+    .list-item { display: flex; justify-content: space-between; gap: var(--space-4); align-items: center; padding: var(--space-3) var(--space-4); }
+    .list-item + .list-item { border-top: 1px solid var(--rule); }
+    .list-item h3 { font-size: var(--text-base); }
+    .editor-demo { background: var(--wash); padding: var(--space-6); border-radius: var(--radius); }
+
+    /* Public-page entry */
+    .entry + .entry { margin-top: var(--space-6); }
+    .entry .meta { margin-top: var(--space-1); }
+    .entry .prose { margin-top: var(--space-2); }
+
+    /* Letter sheet preview (scaled) */
+    .desk { background: var(--wash); padding: var(--space-8) var(--space-4); border-radius: var(--radius); }
+    .sheet {
+      width: 100%; max-width: 34rem; aspect-ratio: 8.5 / 11; margin-inline: auto;
+      background: var(--paper); box-shadow: 0 1px 2px rgb(24 33 47 / 0.12), 0 8px 24px rgb(24 33 47 / 0.08);
+      padding: 6%; font-family: var(--font-serif); font-size: 0.6875rem; line-height: 1.45;
+    }
+    .sheet h4 { font-family: var(--font-sans); font-size: 1.75em; font-weight: 800; letter-spacing: -0.02em; }
+    .sheet .contact { color: var(--ink-soft); margin-top: 0.3em; }
+    .sheet h5 { font-family: var(--font-sans); font-size: 1em; margin: 1.4em 0 0.4em; padding-bottom: 0.25em; border-bottom: 1px solid var(--rule); }
+    .sheet p + p { margin-top: 0.35em; }
+  </style>
+</head>
+<body>
+  <main class="container">
+
+    <header class="sg-head">
+      <p class="meta">P01 Portfolio · T03 design reference</p>
+      <h1 class="name" style="margin-top: var(--space-4)">REN_DC.DEV</h1>
+      <p class="prose">Every colour, font and spacing value below comes from <code>css/base.css</code>. Change it there and every page follows.</p>
+    </header>
+
+    <section class="rail" aria-labelledby="c-colour">
+      <h2 id="c-colour">Colour</h2>
+      <div class="swatches">
+        <div class="swatch"><div style="background:var(--paper)"></div><p>Paper<br><code>#ffffff</code></p></div>
+        <div class="swatch"><div style="background:var(--wash)"></div><p>Wash<br><code>#f3f5f7</code></p></div>
+        <div class="swatch"><div style="background:var(--ink)"></div><p>Ink<br><code>#18212f</code></p></div>
+        <div class="swatch"><div style="background:var(--ink-soft)"></div><p>Ink soft<br><code>#4a5568</code></p></div>
+        <div class="swatch"><div style="background:var(--rule)"></div><p>Rule<br><code>#d9dee5</code></p></div>
+        <div class="swatch"><div style="background:var(--highlight)"></div><p>Highlight<br><code>#f6e05e</code></p></div>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="c-type">
+      <h2 id="c-type">Type</h2>
+      <div class="scale">
+        <div><span class="meta">Name · Schibsted Grotesk 800</span><p class="name">REN_DC.DEV</p></div>
+        <div><span class="meta">Page heading · 31px</span><h1>Resume versions</h1></div>
+        <div><span class="meta">Section heading · 25px</span><h2>Experience</h2></div>
+        <div><span class="meta">Item title · 20px</span><h3>Portfolio and resume builder</h3></div>
+        <div><span class="meta">Reading text · Source Serif 4, 17px</span>
+          <p class="prose">BSIT graduate building web apps with HTML, CSS, JavaScript and SQL. I build tools that solve small, real problems for local businesses, and I write the code myself so I understand every part of it.</p>
+        </div>
+        <div><span class="meta">Meta · 13px</span><p class="meta">June 2022 – May 2026 · Philippines</p></div>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="c-public">
+      <h2 id="c-public">Projects</h2>
+      <div>
+        <article class="entry">
+          <h3>Portfolio and resume builder</h3>
+          <p class="meta">HTML, CSS, JavaScript, Supabase · <a href="#">Live site</a> · <a href="#">Code</a></p>
+          <p class="prose">A public portfolio with a private editor. I keep my resume content in one place and export tailored versions on Letter paper.</p>
+        </article>
+        <article class="entry">
+          <h3>Inventory tracker for a local retail client</h3>
+          <p class="meta">PHP, MySQL</p>
+          <p class="prose">Replaced a paper stock list with a simple web app the owner updates from a phone.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="c-controls">
+      <h2 id="c-controls">Controls</h2>
+      <div class="scale">
+        <div class="row-actions">
+          <button class="btn" type="button">Save changes</button>
+          <button class="btn btn-quiet" type="button">Add education</button>
+          <button class="btn btn-danger" type="button">Delete</button>
+          <button class="btn" type="button" disabled>Saving…</button>
+        </div>
+        <form class="form-demo" onsubmit="return false">
+          <div class="field">
+            <label for="sg-school">School</label>
+            <input id="sg-school" type="text" value="Sample University">
+          </div>
+          <div class="field">
+            <label for="sg-degree">Degree</label>
+            <input id="sg-degree" type="text" aria-describedby="sg-degree-hint">
+            <span class="hint" id="sg-degree-hint">For example: BS Information Technology</span>
+          </div>
+          <div class="field">
+            <label for="sg-details">Details</label>
+            <textarea id="sg-details"></textarea>
+            <span class="error">Details must be under 500 characters.</span>
+          </div>
+          <label class="check"><input type="checkbox" checked> Show on public site</label>
+        </form>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="c-editor">
+      <h2 id="c-editor">Highlighter</h2>
+      <div class="scale">
+        <p class="prose">In the editor, items shown on the public site get a <mark>highlighter stroke</mark>. In resume versions it marks what you picked.</p>
+        <div class="editor-demo">
+          <div class="list">
+            <div class="list-item">
+              <div><h3><mark>BS Information Technology</mark></h3><p class="meta">Sample University · 2022 – 2026</p></div>
+              <button class="btn btn-quiet" type="button">Edit</button>
+            </div>
+            <div class="list-item">
+              <div><h3>Senior High School, ICT strand</h3><p class="meta">Sample High School · 2020 – 2022</p></div>
+              <button class="btn btn-quiet" type="button">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="c-resume">
+      <h2 id="c-resume">Resume A</h2>
+      <div class="desk">
+        <div class="sheet" role="img" aria-label="Scaled preview of the single-column resume on Letter paper">
+          <h4>REN_DC.DEV</h4>
+          <p class="contact">Web developer · email@example.com · Philippines · github.com/Clarence-C-P</p>
+          <h5>Summary</h5>
+          <p>BSIT graduate building web apps with HTML, CSS, JavaScript and SQL.</p>
+          <h5>Projects</h5>
+          <p><b>Portfolio and resume builder</b> · HTML, CSS, JavaScript, Supabase</p>
+          <p>Public portfolio with a private editor and Letter-size PDF export.</p>
+          <h5>Education</h5>
+          <p><b>BS Information Technology</b> · Sample University · 2022 – 2026</p>
+          <h5>Skills</h5>
+          <p>HTML, CSS, PHP, SQL, JavaScript, Git</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
