@@ -12,15 +12,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/admin.css">
-  <script type="module">
-    import { requireAuth, signOut } from '../js/auth.js';
-
-    const session = await requireAuth();
-    if (session) {
-      document.getElementById('user-email').textContent = session.user.email;
-      document.getElementById('logout-button').addEventListener('click', signOut);
-    }
-  </script>
+  <script type="module" src="../js/admin.js"></script>
 </head>
 <body class="admin">
   <header class="admin-bar">
@@ -31,9 +23,102 @@
     </div>
   </header>
 
-  <main class="container admin-main">
-    <h1>Editor</h1>
-    <p class="meta">You are logged in. Profile and section editing arrive in T05–T08.</p>
-  </main>
+  <div class="editor container">
+    <!-- Sections are added here as they are built (T06–T10). -->
+    <nav class="editor-nav" aria-label="Editor sections">
+      <a href="#profile" aria-current="page">Profile</a>
+    </nav>
+
+    <main class="editor-main">
+      <form id="profile-form" class="editor-form" novalidate>
+        <div class="editor-head">
+          <h1 id="profile">Profile</h1>
+          <p class="meta">Shown at the top of your public page and on every resume.</p>
+        </div>
+
+        <!-- ---- Photo ---------------------------------------------- -->
+        <section class="panel" aria-labelledby="photo-heading">
+          <h2 id="photo-heading">Photo</h2>
+          <div class="photo-row">
+            <div class="photo-frame">
+              <img id="photo-preview" alt="Your profile photo" hidden>
+              <span id="photo-empty" class="photo-empty">No photo yet</span>
+            </div>
+            <div class="field">
+              <label for="photo-input">Choose a photo</label>
+              <input id="photo-input" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="photo-hint">
+              <span id="photo-hint" class="hint">JPEG, PNG or WebP, up to 1 MB. A square photo looks best.</span>
+              <span id="photo-error" class="error" role="alert" hidden></span>
+            </div>
+          </div>
+          <input type="hidden" name="photo_url">
+        </section>
+
+        <!-- ---- Public details ------------------------------------- -->
+        <section class="panel" aria-labelledby="public-heading">
+          <h2 id="public-heading">Public details</h2>
+          <div class="form-grid">
+            <div class="field span-2">
+              <label for="full_name">Full name</label>
+              <input id="full_name" name="full_name" type="text" required autocomplete="name">
+            </div>
+            <div class="field span-2">
+              <label for="headline">Headline</label>
+              <input id="headline" name="headline" type="text" aria-describedby="headline-hint">
+              <span id="headline-hint" class="hint">For example: Web developer, HTML, CSS, PHP and SQL</span>
+            </div>
+            <div class="field span-2">
+              <label for="summary">Summary</label>
+              <textarea id="summary" name="summary" rows="5" aria-describedby="summary-hint"></textarea>
+              <span id="summary-hint" class="hint">Two to four sentences about what you do and what you are looking for.</span>
+            </div>
+            <div class="field">
+              <label for="email">Contact email</label>
+              <input id="email" name="email" type="email" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="location">Location</label>
+              <input id="location" name="location" type="text" aria-describedby="location-hint">
+              <span id="location-hint" class="hint">City and country is enough, for example: Cebu, Philippines</span>
+            </div>
+            <div class="field">
+              <label for="github">GitHub</label>
+              <input id="github" name="github" type="url" placeholder="https://github.com/…">
+            </div>
+            <div class="field">
+              <label for="linkedin">LinkedIn</label>
+              <input id="linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/…">
+            </div>
+            <div class="field span-2">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="url" placeholder="https://…">
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- Private contact ------------------------------------ -->
+        <section class="panel" aria-labelledby="private-heading">
+          <h2 id="private-heading">Private contact</h2>
+          <p class="meta">Only used on resumes you export. Never shown on the public site.</p>
+          <div class="form-grid">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="field span-2">
+              <label for="address">Address</label>
+              <input id="address" name="address" type="text" autocomplete="street-address">
+            </div>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button id="profile-save" class="btn" type="submit">Save profile</button>
+          <!-- aria-live: screen readers announce the status when it changes -->
+          <p id="profile-status" class="form-status" aria-live="polite"></p>
+        </div>
+      </form>
+    </main>
+  </div>
 </body>
 </html>
